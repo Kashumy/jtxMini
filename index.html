@@ -1,0 +1,29 @@
+<script src="./jtxmini.js"></script>
+<script type="jtx">
+gl = createscreen("gamecanvas", 99)
+hueValue = 0; 
+fun randomColor():
+  hueValue = (hueValue + 10) % 360; 
+  return `hsl(${hueValue}, 50%, 50%)`; 
+end;
+printf(`hello world`)
+intchange=0;
+randcol=randomColor();
+fun animateBox():
+   intchange++; w = gl.width; h = gl.height; wint=w/50; gl.clear()
+     if intchange>10;
+        randcol=randomColor();
+        intchange=0;
+     end
+        
+    gl.drawbox(0, 0, w, h, randcol);
+    gl.drawtext(0.5*w-(10*10)/2, 0.5*h, "Hello World", 20, 0xffffff);
+    wait 10:
+      animateBox();
+    end
+  end;
+fun init():
+  animateBox()
+end;
+init()
+</script>
